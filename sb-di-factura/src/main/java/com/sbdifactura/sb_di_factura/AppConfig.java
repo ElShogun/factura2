@@ -1,0 +1,29 @@
+package com.sbdifactura.sb_di_factura;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
+import com.sbdifactura.sb_di_factura.models.Item;
+import com.sbdifactura.sb_di_factura.models.Product;
+
+@Configuration
+@PropertySource("classpath:text.properties")
+public class AppConfig {
+
+    @Bean
+    List<Item> invoItems(){
+        Product product = new Product();
+        product.setName("Camara sony");
+        product.setPrice(333);
+        
+        Product product2 = new Product("Portatil asus", 33333);
+
+        List<Item> items = Arrays.asList(new Item(product, 2), new Item(product2,4));
+
+        return items;
+    }
+}
